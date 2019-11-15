@@ -1,6 +1,6 @@
 <?php
 
-define("ROOT", "/reservation");
+define("ROOT", "/easy_ride_hub");
 /**
  * 
  */

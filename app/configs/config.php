@@ -5,13 +5,13 @@
 			define('DB_HOST', 'localhost');
 			define('DB_USER', 'root');
 			define('DB_PASS', '');
-			define('DB_NAME', 'sf_reservation');
+			define('DB_NAME', 'sf_easy');
 
 			//APP ROOT
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'https://localhost/reservation');
+			define('URL_ROOT', 'https://localhost/easy_ride_hub');
 
 			//SITE NAME
 			define('SITE_NAME', 'Help Agency');

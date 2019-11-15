@@ -5,5 +5,5 @@ function redirect($page){
 }
 
 function setupRedirect($page){
-	header("Location: http://" . $_SERVER['SERVER_NAME'] . '/reservation/' . $page);
+	header("Location: http://" . $_SERVER['SERVER_NAME'] . '/easy_ride_hub/' . $page);
 }

@@ -11,7 +11,7 @@ $(".content").mCustomScrollbar({
     autoHideScrollbar: true
 });
 /*ENd ScrollBar*/
-var URL_ROOT = '/reservation';
+var URL_ROOT = '/easy_ride_hub';
 $(document).on('click', '.save-btn', function(e){
 	e.preventDefault();
 	var data = $('#chemicalAdd').serializeArray();
