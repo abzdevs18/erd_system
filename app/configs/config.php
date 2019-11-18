@@ -4,7 +4,7 @@
 
 			define('DB_HOST', 'localhost');
 			define('DB_USER', 'root');
-			define('DB_PASS', '');
+			define('DB_PASS', 'D3b1an!?');
 			define('DB_NAME', 'sf_easy');
 
 			//APP ROOT
