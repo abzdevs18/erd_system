@@ -1,8 +1,8 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
-
+<div class="dash_container">
 
 	<section class="tg-dash">
-		<h1>Update Settings</h1>
+		<h1>Profile info</h1>
 	</section>
 	<section class="offices-msgs">
 		<div class="alerts-notif">
@@ -96,5 +96,5 @@
 			</div>	
 		</div>
 	</section>
-
+</div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

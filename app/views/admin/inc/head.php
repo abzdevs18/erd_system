@@ -11,6 +11,18 @@
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		crossorigin="" />
+		<!-- leaflet routing -->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+		crossorigin=""></script>
+		<!-- leftlet routing js -->
+		<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 	<style>
 		@import url("<?=URL_ROOT;?>/css/static-style.css");
@@ -32,7 +44,9 @@
 		.tox-statusbar__branding {
 			display: none !important;
 		}
-
+		.leaflet-routing-container {
+			display:none;
+		}
 	</style>
 	<script>
 		$( function() {
@@ -60,6 +74,40 @@
 	</script>
 </head>
 <body style="position:relative;">
+	<!-- Modal for confirmation in deleting Blog -->
+	<div class="confirmationModal" style="display:none;">
+		<div class="confirmationMessage">
+			<h2></h2>
+			<div class="mapCon mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
+				<div class="changepass-holder">
+					<div class="form-group">
+						<select style="width: 100%;border-radius:35px;" name="chemBrand">
+							<optgroup>
+								<option value="">Route</option>
+								<option value="">Place</option>
+								<option value="">Terminal</option>
+								<option value="">Driver</option>
+								<option value="">Bus</option>
+							</optgroup>
+						</select>
+						<!-- <label for="chemBrand">Gender</label> -->
+					</div>
+				</div>
+				<div class="changepass-holder">
+					<div class="form-group">
+					<div id="mapid" style="width:100%;height:300px;"></div>
+						<!-- <label for="chemName">Chemical Formula</label> -->
+					</div>
+				</div>
+				<div class="actionButtonModal">
+					<button>Continue</button>
+					<button id="cancelDeletion">Cancel <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Separate driver from bus because it could happen that the company has a spare busses."></i></sup></button>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<!-- End of modal blog Deletion -->
+	
 	<!-- <img style="position:absolute;z-index:-1;" src="<?=URL_ROOT;?>/css/svg/header.svg" alt="" class="src"> -->
 			<!-- Modal: For adding chemicals. First Plan -->
 	<div id="modal" style="display:none;width: 100%;height: 100vh;background: rgba(51, 51, 51, 0.37);z-index: 999999;position: fixed;">
@@ -197,63 +245,15 @@
 	<!-- End Notification Modal -->
 	<main>
 		<header class="dashboard-nav">
-			<div id="add-post">
-				<div class="search-dash" style="margin-top: 5px;">
-					<div id="search-sort" style="width: 80%;">
-						<input type="text" name="search" placeholder="Search Here" style="width: 100%;" id="admin-search-field">
-						<i class="fal fa-search"></i>
-					</div>	
-					<div class="dash-result">
-						<div>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</div>
-					</div>				
-				</div>
-				<div>
-					<a href="<?=URL_ROOT;?>/admin/form"><i class="fal fa-bookmark"></i> Store Chemical</a>
-					<div id="notif-icon">
-						<button><i class="fal fa-bell"></i></button>
-						<span id="notif-counter">2</span>
-					</div>
-					<div style="display: flex;flex-direction: row;margin-left: 20px;vertical-align: middle;line-height: 45px;border-left: 2px solid #999;">
-						<span style="font-family: 'quicksand';font-weight: 600;padding-left: 10px;">Administrator</span>
-						<div style="width: 46px;height: 46px;border: 1px solid #666;margin-left: 10px;border-radius: 50%;background: #f3f3f3;background-image: url('<?=URL_ROOT;?>/img/prof.png');background-size: contain;background-repeat: no-repeat;background-position: center;">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<section id="side-navigation">				
-				<div class="clip-path">
-					<span>
-						<i class="fal fa-angle-left caret-left caret"></i>
-						<i class="fal fa-angle-right caret-right caret"></i>
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="67" viewBox="0 0 20 67">
-							<metadata>
-								<!--?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?-->
-									<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01">
-										<rdf:rdf xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-											<rdf:description rdf:about=""></rdf:description>
-										</rdf:rdf>
-									</x:xmpmeta>
-								<!--?xpacket end="w"?-->
-							</metadata>
-							<path id="bg" class="cls-1" d="M20,27.652V39.4C20,52.007,0,54.728,0,67.265,0,106.515.026-39.528,0-.216-0.008,12.32,20,15.042,20,27.652Z"></path>
-						</svg>						
-					</span>
-				</div>
+			
+			<section id="side-navigation" class="sideNav-full">	
 				<!--  data-simplebar -->
 				<div id="navigation-scroll" class="mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 100%;width: 100%;">			
-					<div id="logo-admin" dir="ltr"> 
+					<!-- <div id="logo-admin" dir="ltr"> 
 						<div style="width: 116px;">
 							<img style="width: 100%;" src="<?=URL_ROOT;?>/img/logo1.png" id="logo-icon">
 						</div>
-					</div>
+					</div> -->
 					<div id="admin-profile">
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
@@ -269,7 +269,10 @@
 						</div>
 					</div>
 					<nav>
-						<ul id="menus-nav">
+						<div id="admin-details" class="menu-head">
+							<h3>Menu</h3>
+						</div>
+						<ul id="menus-nav" style="margin-bottom:20px;">
 							<li data-link="<?=URL_ROOT;?>/admin" class="<?=($_SESSION['menu_active']=="home") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-chart-bar"></i>
 								<a href="#"> Analytics</a>
@@ -279,25 +282,30 @@
 								<a href="#"> Profile settings</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-cubes"></i>
-								<a href="#"> Requests</a>
+								<i class="fal fa-calendar-week"></i>
+								<a href="#"> Schedules</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/biddings" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-envelope"></i>
 								<a href="#"> Messages</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/chemical" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-flask"></i>
-								<a href="#"> Chemicals</a>
+								<i class="fal fa-car"></i>
+								<a href="#"> Drivers</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/student" class="<?=($_SESSION['menu_active']=="student") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-users-class"></i>
-								<a href="#"> Students</a>
+								<i class="fal fa-map-marked-alt"></i>
+								<a href="#"> Places</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/privacy" class="<?=($_SESSION['menu_active']=="privacy") ? 'menu-active' : ''; ?>">
-								<i class="fal fa-shield-check"></i>
-								<a href="#"> Privacy settings</a>
+								<i class="fal fa-history"></i>
+								<a href="#"> Logs</a>
 							</li>
+						</ul>
+						<div id="admin-details" class="menu-head">
+							<h3>Actions</h3>
+						</div>
+						<ul id="menus-nav">
 							<li data-link="<?=URL_ROOT;?>/users/signout">
 								<i class="fal fa-sign-out"></i>
 								<a href="#"> Logout</a>
@@ -306,6 +314,48 @@
 					</nav>
 				</div>
 			</section>
+			<div id="add-post">
+				<div class="right-menu">
+					<div id="r-sock">
+						<i class="fal fa-ellipsis-v"></i>
+						<i class="fal fa-ellipsis-v"></i>
+						<i class="fal fa-ellipsis-v"></i>
+					</div>
+					<h2>Terminal hub</h2>
+					<!-- <div class="logo">
+						<img src="<?=URL_ROOT?>/img/default/road.png" alt="">
+					</div> -->
+					<!-- <i class="fas fa-th"></i> -->
+				</div>
+				<div class="search-dash">
+					<div id="search-sort">
+						<input type="text" name="search" placeholder="Search Here" style="width: 100%;" id="admin-search-field">
+						<i class="fal fa-search"></i>
+					</div>	
+					<div class="dash-result">
+						<div>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</div>
+					</div>				
+				</div>
+				<div>
+					<!-- <a href="<?=URL_ROOT;?>/admin/form"><i class="fal fa-bookmark"></i> Store Chemical</a> -->
+					<div id="notif-icon">
+						<button><i class="fal fa-bell"></i></button>
+						<span id="notif-counter"></span>
+					</div>
+					<div style="margin-top:5px;">
+						<div style="width: 30px;height: 30px;margin-left: 10px;border-radius: 50%;background: #f3f3f3;background-image: url('<?=URL_ROOT;?>/img/prof.png');background-size: contain;background-repeat: no-repeat;background-position: center;">
+							
+						</div>
+					</div>
+				</div>
+			</div>
 		</header>
 	
 	

@@ -1,5 +1,5 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
-
+<div class="dash_container">
 	<section class="tg-dash">
 		<h1>Administrator Messages</h1>
 	</section>
@@ -105,6 +105,6 @@
 			</div>			
 		</div>
 	</section>
-
+</div>
 
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

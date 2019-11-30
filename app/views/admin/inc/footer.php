@@ -1,13 +1,12 @@
 	</main>	
-	<div id="action_options" class="m_add_hidden">
-		<a href="<?=URL_ROOT;?>/admin/add_user_ad"><i class="far fa-user-shield"></i> Add User</a>
-		<a href="<?=URL_ROOT;?>/admin/add_student"><i class="far fa-user-tag"></i> Add Student</a>
-	</div>
 	<div id="add_record">
-		<p><i class="far fa-plus"></i></p>
+		<p><i class="fal fa-plus"></i></p>
 	</div>
 	<!-- <div id="sound"></div> -->
 	<script src="<?=URL_ROOT;?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="<?=URL_ROOT;?>/js/MovingMarker.js"></script>
+	<script type="text/javascript" src="<?=URL_ROOT;?>/js/leaflet/dragmarker.js"></script>
+	<script src="<?=URL_ROOT;?>/js/script.js"></script>
 	<script src="<?=URL_ROOT;?>/js/push.min.js"></script>
 	<script src="<?=URL_ROOT;?>/js/main.js"></script>
 	<script src="<?=URL_ROOT;?>/js/admin_script.js"></script>

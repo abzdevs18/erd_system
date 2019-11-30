@@ -364,10 +364,10 @@ $(document).on('click','#notif-icon',function(){
 $(document).on('click','#add_record',function(){
   $('.m_add_hidden').toggleClass('add_m');
   // Push.Permission.request(onGranted, onDenied);
-  Push.Permission.DENIED; // 'denied'
+  // Push.Permission.DENIED; // 'denied'
 
 
-  console.log(Push.Permission.has());
+  // console.log(Push.Permission.has());
   demo();
   $('.m_notification').print();
   return false;

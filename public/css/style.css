@@ -28,6 +28,59 @@
 	top: -12px;
 }
 
+.confirmationModal {
+	position: absolute;
+	width: 100%;
+	/* height: 100vh; */
+	height: 100%;
+	background: rgba(51, 51, 51, 0.425);
+	margin: 0 auto;
+	z-index: 999999;
+}
+.confirmationMessage {
+	width: 40%;
+	/* height: 300px; */
+	background:#fff;
+	margin: 0 auto;
+	margin-top: 10%;
+	display:flex;
+	flex-direction: column;
+	border-radius: 5px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+}
+.confirmationMessage h2 {
+	padding: 20px 30px;
+	font: var(--font-quick-500-20);
+	color: #fff;
+	text-align: left;
+	background: var(--dash-color);
+}
+
+.actionButtonModal {
+	display: flex;
+	flex-direction: row;
+	/* margin: 30px; */
+}
+.actionButtonModal button{
+	padding: 0px 10px;
+	border: none;
+	border-radius: 5px;
+	margin-right: 15px;
+	font:var(--font-quick-500-16);
+	cursor: pointer;
+}
+.actionButtonModal button:first-child {
+	background: #f91942;
+	color: #fff;
+}
+.actionButtonModal button:last-child {
+	background: var(--green);
+	color: #fff;
+	padding: 0 20px;
+}
  a {
  	text-decoration: none;
  }
@@ -37,32 +90,68 @@
  	position: relative;
  }
  main {
- 	padding-left: 60px;
+ 	/* padding-left: 60px; */
  	overflow: hidden;
  	display: flex;
  	flex-direction: column;
  }
  .dashboard-nav {
- 	/* width: 100%; */
+ 	width: 100%;
  	box-shadow: var(--box-shadow);
- 	padding: 20px 60px;
  	z-index: 9999;
  	position: relative;
  	float: right;
- 	position: sticky;
+ 	position: fixed;
  	top: 0;
+ 	/* left: 0; */
  }
  #add-post {
  	/* float: right; */
  	display: flex;
  	justify-content: space-between;
+ 	z-index: 9999999;
+ 	background: var(--dash-color);
+ 	padding-top: 5px;
+ 	padding-bottom: 5px;
  }
+ #add-post > div:first-child, #add-post > div:last-child {
+	 width: 25%;
+	 display: flex;
+	}
   #add-post > div {
   	width: 50%;
   }
+  .dash_container {
+	 margin-left: 250px;
+	 /* margin-top: 85px; */
+	 }
+.right-menu i {
+	color: #fff;
+	font-size: 28px;
+}
+.right-menu h2 {
+	font: var(--font-quick-400-13);
+	font-weight: 700;
+	color: #fff;
+	vertical-align: middle;
+	line-height: 35px;
+	text-transform: capitalize;
+	font-size: 20px;
+}
+.right-menu .r-stock {
+	display: inline-flex;
+	flex-direction: row;
+}
+#r-sock {
+	margin: 5px 20px;
+}
+.r-stock {
+	margin: 10px;
+}
   #add-post > div:last-child {
   	display: flex;
   	justify-content: flex-end;
+  	padding: 0px 20px 0px 0px;
   }
 
  #redbox-shadow {
@@ -94,16 +183,46 @@
  #notif-icon button {
  	background: none;
  	border: none;
+ 	display: block;
+ 	vertical-align: middle;
+ 	justify-content: center;
  }
  #notif-icon button i {
- 	border: 1px solid #666;
- 	width: 46px;
- 	height: 46px;
- 	border-radius: 50%;
- 	line-height: 44px;
- 	vertical-align: middle;
- 	font-size: 18px;
- 	overflow: hidden;
+	 /* border: 1px solid #666; */
+	 color: #fff;
+	 width: 40px;
+	 height: 40px;
+	 border-radius: 50%;
+	 line-height: 35px;
+	 vertical-align: middle;
+	 font-size: 22px;
+	 overflow: hidden;
+	}
+ #notif-counter {
+ 
+position: absolute;
+ 
+background: var(--green);
+ 
+width: 9px;
+ 
+height: 9px;
+ 
+text-align: center;
+ 
+border-radius: 50%;
+ 
+line-height: 20px;
+ 
+right: 8px;
+ 
+top: 5px;
+ 
+color: #fff;
+ 
+font-size: 12px;
+ 
+font-family: quicksand;
  }
  /*
 	Side navigation
@@ -132,6 +251,25 @@ admin Logo
 	opacity: 1 !important;
 	margin: 0px !important;
 }
+#admin-details {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin-left: 5px;
+    justify-content: center;
+    min-width: 110px;
+}
+.menu-head {
+	padding: 15px;
+}
+#admin-details h3 {
+	font: var(--font-quick-500-16);
+	line-height: 18px;
+}
+#admin-details p {
+	font: var(--font-quick-500-14);
+	color: #ddd;
+}
 /*
 End logo
 */
@@ -141,8 +279,9 @@ Start profile
 */
 #admin-profile {
 	width: 100%;
-	background-color: #2b2f3e;
+	background-color: #dfdddb;
 	/*margin-bottom: 80px;*/
+	margin-top: 50px;
 }
 
 #profile-container {
@@ -156,6 +295,10 @@ Start profile
 	justify-content: center;
 	width: 60px;
 	height: 60px;
+	background: var(--dash-color);
+	border-radius: 4px;
+	box-shadow: var(--box-shadow);
+	margin-right: 9px;
 }
 #admin-icon img {
 	/*margin: 15px;*/
@@ -164,7 +307,7 @@ Start profile
 #admin-details {
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: var(--dark-font);
     margin-left: 5px;
     justify-content: center;
     min-width: 110px;
@@ -172,14 +315,34 @@ Start profile
 #admin-details h3 {
 	font: var(--font-quick-500-16);
 	line-height: 18px;
+	font-weight: bold;
+	font-size: 19px;
 }
 #admin-details p {
 	font: var(--font-quick-500-14);
-	color: #ddd;
+	color: var(--dark-font);
+}
+#side-navigation {
+	/*width: 250px;*/
+	width: 60px;
+	top: 0;
+	left: 0;
+	z-index: 55;
+	position: fixed;
+	height: 100%;
+	background-color: #323759;
+	transition: all .5s;
+	box-shadow: var(--box-shadow);
+}
+.caret-left {
+	display: none;
+}
+.sideNav-full {
+	width: 250px !important;
 }
 .adm-prof {
-	margin: 0 0 0 60px;
-	opacity: 0;
+	/* margin: 0 0 0 60px; */
+	/* opacity: 0; */
 	transition: all .5s;
 }
 #navigation-scroll {
@@ -192,7 +355,8 @@ Start profile
     display: none; 
 }
 #navigation-scroll nav {
-	margin: 80px 0px;
+	margin: 40px 0px;
+	background: var(--dash-side);
 }
 #admin-edit {
 	position: absolute;
@@ -201,10 +365,10 @@ Start profile
 }
 #admin-edit a {
 }
-#admin-edit a i {	
-	padding: 14px;	
-	border-radius: 50%;	
-	background: var(--green);	
+#admin-edit a i {
+	padding: 14px;
+	border-radius: 50%;
+	background: var(--dash-color);
 	color: #fff;
 	font-size: 18px;
 	box-sizing: 0 0 7px 15px var(--light-green);
@@ -235,11 +399,14 @@ End amdin profile
  	width: 60px;
  	top: 0;
  	left: 0;
- 	z-index: 55;
+ 	z-index: -1;
  	position: fixed;
  	height: 100%;
- 	background-color: var(--dark-font);
+ 	background-color: var(--dash-side);
  	transition: all .5s;
+ 	/* margin-top: 50px; */
+ 	color: var(--dark-font);
+ 	box-shadow: var(--box-shadow);
  }
  .caret-left {
  	display: none;
@@ -248,7 +415,7 @@ End amdin profile
  	width: 250px !important;
  }
  #menus-nav li:first-child {
- 	border-top: 1px solid #495067;
+ 	/* border-top: 1px solid #495067; */
  }
  #menu-nav li:nth-child( odd ){
  	background: red;
@@ -256,35 +423,39 @@ End amdin profile
  }
  #menus-nav li{
  	list-style-type: none;
- 	padding: 20px;
+ 	padding: 12px;
  	padding-left: 17px;
- 	border-bottom: 1px solid #495067;
- 	border-left: 3px solid var(--dark-font);
+ 	/* border-bottom: 1px solid #495067; */
+ 	border-left: 3px solid var(--dash-side);
  	box-sizing: border-box;
  	cursor: pointer;
  	transition: all .5s;
  	position: relative;
+ 	padding-left: 10px;
+ 	line-height: 12px;
+ 	vertical-align: middle;
  }
  #menus-nav li:hover {
- 	background-color: #2b2f3e;
- 	border-left-color: #00cc67;
+ 	background-color: var(--dash-side-hove);
+ 	border-left-color: var(--dash-color);
+ 	color: var(--dark-font);
  }
 .menu-active {
- 	background-color: #2b2f3e;
- 	border-left-color: #00cc67 !important;	
+ 	background-color: var(--dash-side-hove);
+ 	border-left-color: var(--dash-color) !important;
 }
 #menus-nav li i {
-	color: #fff;
+	color: var(--dark-font);
 	padding-right: 10px;
 	font-size: 20px;
 }
 #menus-nav li a {
 	font: var(--font-quick-500-14);
-	color: #fff;
-	margin-top: 6px;
-	margin-left: -100px;
+	color: var(--dash-color);
+	margin-top: 3px;
+	/* margin-left: -100px; */
 	outline: none;
-	opacity: 0;
+	/* opacity: 0; */
 	/*display: none; */
 	position: absolute;
 	-webkit-transition: all 300ms ease-in-out;
@@ -292,6 +463,7 @@ End amdin profile
 	-ms-transition: all 300ms ease-in-out;
 	-o-transition: all 300ms ease-in-out;
 	transition: all 300ms ease-in-out;
+	font-weight: 600;
 }
 .hide-sh {
 	margin-left: 0px !important;
@@ -314,9 +486,11 @@ Dashboard
  .tg-dash {
     width: 100%;
     float: left;
-    padding: 30px 60px;
+    padding: 20px 60px;
     /*position: relative;*/
     border-bottom: 1px solid #d5d5d5;
+    margin-top: 50px;
+    background: var(--dash-side);
 }
 .tg-dash h1 {
 	font: var(--font-quick-500-18);
@@ -431,6 +605,7 @@ offices Messages
 	padding: 20px 16px;
 	font: var(--font-quick-500-20);
 	color: var(--light-dark);
+	background: var(--dash-side);
 }
 #log {
 	padding: 15px;
@@ -604,6 +779,9 @@ Ads Log
 .msgs-3-col-item:not(:last-child){
 	border-right: var(--border);
 }
+.col-4.msgs-3-col-item{
+	background: var(--dash-side);
+}
 .jobs-updates {
 	padding: 30px 15px;
 	/* text-align: left; */
@@ -695,7 +873,7 @@ textarea:focus, select:focus, .tg-select select:focus, .form-control:focus, inpu
 	box-shadow: var(--box-shadow);
 }
 .changepass-holder {
-	padding: 30px;
+	margin: 30px;
 	position: relative;
 }
 
@@ -705,6 +883,7 @@ textarea:focus, select:focus, .tg-select select:focus, .form-control:focus, inpu
 	position: relative;
 	float: left;
 	width: 100%;
+	margin: 20px auto;
 }
 .form-control {
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
@@ -878,11 +1057,12 @@ Table Design
 }
 #search-sort i {
 	position: absolute;
-	font-size: 19px;
-	right: 0;
+	font-size: 15px;
+	left: 0;
 	top: 0;
-	margin: 12px;
-	color: #999;
+	margin: 13px;
+	color: var(--dash-color);
+	transform: rotate(90deg);
 }
 .job-list-tables {
 	width: 100%;
@@ -1220,32 +1400,22 @@ transition: all .5s;
 	position: relative;
 }
 .search-dash > #search-sort > input {
-	border-radius: 35px;
+	/* border-radius: 35px; */
+	background: #DFDDDB;
+	color: var(--dark-font);
+	padding-left: 35px;
+}
+.search-dash > #search-sort > input::placeholder{
+	color: var(--dark-font);
 }
 .dash-result {
-	width: 80%;
-    background: red;
-    position: absolute;
-    top: -0;
-    z-index: -1;
-    border-radius: 20px;
-    display: none;
-}
-#notif-counter {
-
-    position: absolute;
-    background: red;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    border-radius: 50%;
-    line-height: 20px;
-    right: -5px;
-    color: #fff;
-    font-size: 12px;
-    font-family: quicksand;
-    font-weight: 50px;
-
+	/* width: 80%; */
+	background: red;
+	position: absolute;
+	top: -0;
+	z-index: -1;
+	border-radius: 20px;
+	display: none;
 }
 /* Request Modal */
 .request_side {
@@ -1319,10 +1489,11 @@ transition: all .5s;
 
 .actionButtonModal {
 	display: flex;
-	flex-direction: row;
-	margin: 30px;
-	justify-content: right;
-	margin-right: 0;
+	flex-direction: row-reverse;
+	padding: 20px 30px;
+	/* justify-content: right; */
+	/* margin-right: 15px; */
+	background: var(--dash-side);
 }
 .actionButtonModal button{
 	padding: 0px 10px;
@@ -1398,8 +1569,8 @@ transition: all .5s;
 	bottom: 10px;
 	right: 10px;
 	z-index:99999;
-	width: 60px;
-	height: 60px;
+	width: 46px;
+	height: 50px;
 	border-radius: 35px;
 	background: #2B2F3E;
 	display: flex;
@@ -1407,9 +1578,10 @@ transition: all .5s;
 	box-shadow: var(--box-shadow);
 }
 #add_record p {
-	padding: 15px;
 	color: #fff;
 	font-size: 25px;
+	line-height: 50px;
+	vertical-align: middle;
 }
 #action_options {
 	bottom: 80px;

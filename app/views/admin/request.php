@@ -1,9 +1,9 @@
 <?php require_once APP_ROOT . '/views/admin/inc/head.php'; ?>
+<div class="dash_container">
 
-
-	<!-- <section class="tg-dash">
+	<section class="tg-dash">
 		<h1>Pending Request</h1>
-	</section> -->
+	</section>
 	<section class="main-tbl-container">
 		<div class="tbl-wrap">
 			<div class="content-head">
@@ -84,5 +84,5 @@
 			</div><!-- End of Table Design -->
 		</div>
 	</section>
-
+</div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

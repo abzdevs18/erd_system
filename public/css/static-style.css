@@ -1,6 +1,9 @@
 :root {
 	--green: #00cc67;
+	--dash-color: #2E4152;
 	--dark-font: #363b4d;
+	--dash-side: #F2EFF0;
+	--dash-side-hove: #DFDDDB;
 	--hover-dark-font: #333848;
 	--light-green: rgba(0, 204,103,0.50);
 	--back-light-green: #00cc67;

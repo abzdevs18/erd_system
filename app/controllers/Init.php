@@ -80,7 +80,7 @@ class Init extends Controller
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'https://" . $_SERVER['HTTP_HOST']  . ROOT ."');
+			define('URL_ROOT', 'http://" . $_SERVER['HTTP_HOST']  . ROOT ."');
 
 			//SITE NAME
 			define('SITE_NAME', 'Help Agency');
