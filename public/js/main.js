@@ -369,7 +369,7 @@ $(document).on('click','#add_record',function(){
 
   // console.log(Push.Permission.has());
   demo();
-  $('.m_notification').print();
+  // $('.m_notification').print();
   return false;
 });
 // setInterval(function(){demo()},5000);

@@ -10,6 +10,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	<script src="<?=URL_ROOT;?>/js/routeMap.js"></script>
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -78,29 +79,184 @@
 	<div class="confirmationModal" style="display:none;">
 		<div class="confirmationMessage">
 			<h2></h2>
-			<div class="mapCon mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="height: 400px;width: 100%;">
+			<div class="mapCon mCustomScrollbar content fluid light" data-mcs-theme="inset-2-dark" style="max-height: 400px;width: 100%;">
 				<div class="changepass-holder">
 					<div class="form-group">
-						<select style="width: 100%;border-radius:35px;" name="chemBrand">
+						<select style="width: 100%;border-radius:35px;" name="itemAdd" id="addT">
 							<optgroup>
-								<option value="">Route</option>
-								<option value="">Place</option>
-								<option value="">Terminal</option>
-								<option value="">Driver</option>
-								<option value="">Bus</option>
+								<option value="1">Terminal</option>
+								<option value="2">Route</option>
+								<option value="3">Place</option>
+								<option value="4">Driver</option>
+								<option value="5">Dispatcher</option>
+								<option value="6">Bus</option>
 							</optgroup>
 						</select>
-						<!-- <label for="chemBrand">Gender</label> -->
+						<label for="itemAdd">Choose item</label>
 					</div>
 				</div>
-				<div class="changepass-holder">
-					<div class="form-group">
-					<div id="mapid" style="width:100%;height:300px;"></div>
-						<!-- <label for="chemName">Chemical Formula</label> -->
+				<!-- Start adding form -->
+				<div id="placeForm" style="display:none;">
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="from" id="placeTerminal">
+								<optgroup>
+									<?php if($data['terminal']) : ?>
+										<?php foreach($data['terminal'] AS $terminal) : ?>
+											<option value="<?=$terminal->latlong?>" data-id="<?=$terminal->id?>"><?=$terminal->name?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="from">Place Terminal:</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<input type="file" id="placeImageData" value="" name="placeImg" style="width: 100%;border-radius:35px;">
+							<label for="placeImg">Photo</label>
+						</div>
+						<div class="form-group">
+							<input type="text" id="placeName" value="" name="placeN" style="width: 100%;border-radius:35px;">
+							<label for="placeN">Name of place</label>
+						</div>
+						<div class="form-group">
+							<input type="text" id="placeAdd" value="" name="address" style="width: 100%;border-radius:35px;">
+							<label for="address">Address</label>
+						</div>
+					</div>
+				</div>
+				<!-- End of adding place -->
+				<!-- Start of adding Bus and if posible add user -->
+				<div id="busForm" style="display:none;">
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="from" id="driveId">
+								<optgroup>
+									<?php if($data['drivers']) : ?>
+										<?php foreach($data['drivers'] AS $driver) : ?>
+											<option value="<?=$driver->id?>"><?=$driver->username?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="from">Bus Driver:</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<input type="text" id="driverN" value="" name="busNum" style="width: 100%;border-radius:35px;">
+							<label for="driverNum">Bus number</label>
+						</div>
+					</div>
+				</div> 
+				<!-- end of adding Bus and if posible add user -->
+				<!-- Adding driver -->
+				<div id="driverForm" style="display:none;">
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="from" id="assignTerminal">
+								<optgroup>
+									<?php if($data['bus']) : ?>
+										<?php foreach($data['bus'] AS $bus) : ?>
+											<option value="<?=$bus->id?>"><?=$bus->body_num?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="from">Bus assigned:</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<input type="text" id="driverN" value="" name="driverName" style="width: 100%;border-radius:35px;">
+							<label for="driverName">Driver's Name</label>
+						</div>
+						<div class="form-group">
+							<input type="text" id="driverCon" value="" name="contact" style="width: 100%;border-radius:35px;">
+							<label for="contact">Contact</label>
+						</div>
+					</div>
+				</div> 
+				<!-- end of adding driver -->				
+				<div id="dispatcherForm" style="display:none;">
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="from" id="assignTerminal">
+								<optgroup>
+									<?php if($data['terminal']) : ?>
+										<?php foreach($data['terminal'] AS $terminal) : ?>
+											<option value="<?=$terminal->latlong?>" data-id="<?=$terminal->id?>"><?=$terminal->name?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="from">Assign To:</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<input type="text" id="disPatch" value="" name="dispatcherName" style="width: 100%;border-radius:35px;">
+							<label for="dispatcherName">Dispathcer Name</label>
+						</div>
+						<div class="form-group">
+							<input type="text" id="disContact" value="" name="contact" style="width: 100%;border-radius:35px;">
+							<label for="contact">Contact</label>
+						</div>
+					</div>
+				</div>
+				<div id="routeForm" style="display:none;">
+					<div class="changepass-holder">
+						<div class="form-group">
+							<input type="text" value="" id="routeNames" name="routeNameN" style="width: 100%;border-radius:35px;">
+							<label for="routeNameN">Route Name</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="from" id="fromR">
+								<optgroup>
+									<?php if($data['terminal']) : ?>
+										<?php foreach($data['terminal'] AS $terminal) : ?>
+											<option value="<?=$terminal->latlong?>" data-id="<?=$terminal->id?>"><?=$terminal->name?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="from">From:</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<select style="width: 100%;border-radius:35px;" name="to" id="toR">
+								<optgroup>
+									<?php if($data['terminal']) : ?>
+										<?php foreach($data['terminal'] AS $terminal) : ?>
+											<option value="<?=$terminal->latlong?>" data-id="<?=$terminal->id?>"><?=$terminal->name?></option>
+										<?php endforeach;?>
+									<?php endif;?>
+								</optgroup>
+							</select>
+							<label for="to">To:</label>
+						</div>
+					</div>
+				</div>
+				<div id="termAddForm">
+					<div class="changepass-holder termFC">
+						<div class="form-group">
+							<input type="text" value="" id="nameTerm" name="nameTerminal" style="width: 100%;border-radius:35px;">
+							<label for="nameTerminal">Terminal Name</label>
+						</div>
+					</div>
+					<div class="changepass-holder">
+						<div class="form-group">
+							<div id="mapid" style="width:100%;height:300px;"></div>
+							<input type="hidden" id="latlong">
+						</div>
 					</div>
 				</div>
 				<div class="actionButtonModal">
-					<button>Continue</button>
+					<button data-u="1">Continue</button>
 					<button id="cancelDeletion">Cancel <sup><i class="fal fa-question-circle" style="font-size:12px;" title="Separate driver from bus because it could happen that the company has a spare busses."></i></sup></button>
 				</div>				
 			</div>
@@ -292,6 +448,10 @@
 							<li data-link="<?=URL_ROOT;?>/admin/chemical" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-car"></i>
 								<a href="#"> Drivers</a>
+							</li>
+							<li data-link="<?=URL_ROOT;?>/admin/routes" class="<?=($_SESSION['menu_active']=="routes") ? 'menu-active' : ''; ?>">
+								<i class="fal fa-route"></i>
+								<a href="#"> Routes</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/student" class="<?=($_SESSION['menu_active']=="student") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-map-marked-alt"></i>

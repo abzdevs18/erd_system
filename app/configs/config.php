@@ -11,7 +11,7 @@
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'https://192.168.0.19/easy_ride_hub');
+			define('URL_ROOT', 'https://192.168.0.28/easy_ride_hub');
 
 			//SITE NAME
 			define('SITE_NAME', 'Help Agency');
