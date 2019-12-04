@@ -12,13 +12,65 @@ L.tileLayer(
   }
 ).addTo(rousteMap);
 
-// L.Routing.control({
-//   waypoints: [L.latLng(9.30357, 123.305317), L.latLng(9.312397, 123.266564)]
-// }).addTo(rousteMap);
+var routingControl;
+$(document).on("click", "#routeCheckingRow", function(e) {
+  $(".removeR").prop("disabled", false);
+  // var state = $("#data-container").attr("data-stat");
 
-// $(document).on("click", "#data-container", function(e) {
-//   var from = $(this).attr("data-from");
-//   var to = $(this).attr("data-to");
+  var from = $(this).attr("data-from");
+  var latlngF = from.split(", ");
 
-//   alert(from);
-// });
+  var to = $(this).attr("data-to");
+  var latlngT = to.split(", ");
+
+  // spliceWaypoints(0, 2);
+
+  routingControl = L.Routing.control({
+    waypoints: [
+      L.latLng([latlngF[0], latlngF[1]]),
+      L.latLng([latlngT[0], latlngT[1]])
+    ]
+  }).addTo(rousteMap);
+
+  // L.marker([latlngF[0], latlngF[1]])
+  //   .addTo(rousteMap)
+  //   .bindPopup("A pretty CSS3 popup.<br> Easily customizable.");
+
+  // rousteMap.on("mouseover", function(e) {
+  //   this.openPopup();
+  // });
+  // var s = new Array();
+  // s = routing.getWaypoints();
+  // JSON.stringify(s)
+});
+$(document).on("click", ".removeR", function(e) {
+  rousteMap.removeControl(routingControl);
+  routingControl = null;
+});
+
+$(document).on("change", "#schedule_routeMap", function(e) {
+  $(".removeR").prop("disabled", false);
+  var assignTerminal = $("#assignTerminal")
+    .find(":selected")
+    .attr("data-id");
+  // var state = $("#data-container").attr("data-stat");
+
+  var from = $(this)
+    .find(":selected")
+    .attr("data-from");
+  var latlngF = from.split(", ");
+
+  var to = $(this)
+    .find(":selected")
+    .attr("data-to");
+  var latlngT = to.split(", ");
+
+  // spliceWaypoints(0, 2);
+
+  routingControl = L.Routing.control({
+    waypoints: [
+      L.latLng([latlngF[0], latlngF[1]]),
+      L.latLng([latlngT[0], latlngT[1]])
+    ]
+  }).addTo(rousteMap);
+});

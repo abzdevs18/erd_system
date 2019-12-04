@@ -90,6 +90,40 @@ class Admin extends Controller
 		$this->view('admin/messages');
 	}
 
+	public function driver(){
+		$driver = $this->postModel->getDriverList();
+		$data = [
+			"driver" => $driver
+		];
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "driver";
+
+		$this->view('admin/drivers', $data);
+	}
+
+	public function drvR(){
+		$drvR = $this->postModel->getDriverRoute(trim($_POST['id']));
+		$data = [
+			"drvR" => $drvR
+		];
+		echo json_encode($drvR);
+	}
+
+	public function places(){
+		$place = $this->postModel->getPlaces();
+		$data = [
+			"place" => $place
+		];
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "places";
+
+		$this->view('admin/place', $data);
+	}
+
 	public function routes(){
 		$routes = $this->postModel->getRoutes();
 		$data = [
@@ -101,6 +135,24 @@ class Admin extends Controller
 		$_SESSION['menu_active'] = "routes";
 
 		$this->view('admin/route', $data);
+	}
+
+	public function addSchedule(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"busNum" => trim($_POST['busNum']),
+				"departTime" => trim($_POST['departTime']),
+				"busRoute" => trim($_POST['busRoute'])
+			];
+
+			if($this->postModel->addSchedule($data)){
+				$data['status'] = 1;
+				echo json_encode($data);
+			}
+		}
 	}
 
 	public function addPlace(){
@@ -225,14 +277,72 @@ class Admin extends Controller
 		}
 	}
 
-	public function privacy(){
+	public function logs(){
 		
 		// no other solution this is for the Left sidebar navigation
 		// the active state is dependent to this SESSION we are setting.
 		unset($_SESSION['menu_active']);
-		$_SESSION['menu_active'] = "privacy";
+		$_SESSION['menu_active'] = "logs";
 
-		$this->view('admin/privacy');
+		$this->view('admin/logs');
+	}
+
+	public function addschedlink(){
+		$routes = $this->postModel->getRoutes();
+		$schedule = $this->postModel->getBusForSched();
+		$data = [
+			"routes" => $routes,
+			"schedule" => $schedule
+		];
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "schedule";
+
+		$this->view('admin/schedule', $data);
+	}
+
+	public function getSched($term){
+		$list = $this->postModel->searchlistSchedule($term);
+		$data = [
+			"listSchedule" => $list
+		];
+		// echo json_encode($data);
+		$this->view('admin/templates/listSched', $data);
+	}
+
+	public function getAllSched(){
+		$routes = $this->postModel->getRoutes();
+		$schedule = $this->postModel->getBusForSched();
+
+		$listSchedule = $this->postModel->listSchedule();
+		$data = [
+			"routes" => $routes,
+			"schedule" => $schedule,
+			"listSchedule" => $listSchedule
+		];
+		// echo json_encode($data);
+		$this->view('admin/templates/allJobTemplate', $data);
+	}
+
+	public function schedule(){
+		$routes = $this->postModel->getRoutes();
+		$schedule = $this->postModel->getBusForSched();
+
+		$listSchedule = $this->postModel->listSchedule();
+		$data = [
+			"routes" => $routes,
+			"schedule" => $schedule,
+			"listSchedule" => $listSchedule
+		];
+		
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "schedule";
+
+		$this->view('admin/listsched', $data);
 	}
 
 	public function logout(){
@@ -242,6 +352,19 @@ class Admin extends Controller
 		unset($_SESSION['menu_active']);
 
 		$this->view('admin/index');
+	}
+
+	public function getPlaceId(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$place = $this->postModel->getPlacesId(trim($_POST['id']));
+			$data = [
+				"place" => $place
+			];
+			$this->view("admin/templates/dataP", $data);
+			// echo json_encode($data);			
+		}
 	}
 
 	public function add_student(){

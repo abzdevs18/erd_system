@@ -75,5 +75,8 @@
 			</div>
 		</div>
 	</section>
+	<div id="add_record">
+		<p><i class="fal fa-plus"></i></p>
+	</div>
 </div>
 <?php require_once APP_ROOT . '/views/admin/inc/footer.php'; ?>

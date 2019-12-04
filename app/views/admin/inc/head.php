@@ -9,8 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/style.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="<?=URL_ROOT;?>/css/jquery.mCustomScrollbar.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<?=URL_ROOT;?>/js/routeMap.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	
+
 	<script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -24,6 +28,7 @@
 		crossorigin=""></script>
 		<!-- leftlet routing js -->
 		<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+	
 
 	<style>
 		@import url("<?=URL_ROOT;?>/css/static-style.css");
@@ -48,10 +53,56 @@
 		.leaflet-routing-container {
 			display:none;
 		}
+		#example_wrapper {
+			margin: 10px;
+		}
+		#example_info, #example_length {
+			float:left;
+			margin-left: 20px;
+			font: var(--font-quick-400-13);
+			font-size: 14px;
+			font-weight: 400;
+		}
+		#example_length {
+			margin-bottom: 10px;
+		}
+		#example_filter {
+			float: right;
+			margin-bottom: 10px;
+			margin-right: 20px;
+		}
+		#example {
+			width: 97% !important;
+		}
+		#example_length label, #example_filter label {
+			display:flex;
+			font: var(--font-quick-500-16);
+			line-height: 2.2;
+		}
+		#example_paginate {
+			float: right;
+			margin-right: 20px;
+		}
+		#example_paginate span {
+			margin: 0 10px;
+		}
+		#example_paginate span a {
+			margin: 0 10px;
+		}
+		#example_paginate a {
+			font: var(--font-quick-400-13);
+			font-size: 14px;
+			font-weight: 600;
+		}
+		/* Time picker */
+		.ui-timepicker-standard {
+			z-index: 9999;
+		}
 	</style>
 	<script>
 		$( function() {
 			$( "#accordion" ).accordion();
+			$('input.timepicker').timepicker();
 		} );
 	</script>
 	<script>
@@ -437,7 +488,7 @@
 								<i class="fal fa-cog"></i>
 								<a href="#"> Profile settings</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/posted" class="<?=($_SESSION['menu_active']=="request") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/schedule" class="<?=($_SESSION['menu_active']=="schedule") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-calendar-week"></i>
 								<a href="#"> Schedules</a>
 							</li>
@@ -445,7 +496,7 @@
 								<i class="fal fa-envelope"></i>
 								<a href="#"> Messages</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/chemical" class="<?=($_SESSION['menu_active']=="chemicals") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/driver" class="<?=($_SESSION['menu_active']=="driver") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-car"></i>
 								<a href="#"> Drivers</a>
 							</li>
@@ -453,11 +504,11 @@
 								<i class="fal fa-route"></i>
 								<a href="#"> Routes</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/student" class="<?=($_SESSION['menu_active']=="student") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/places" class="<?=($_SESSION['menu_active']=="places") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-map-marked-alt"></i>
 								<a href="#"> Places</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/privacy" class="<?=($_SESSION['menu_active']=="privacy") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/logs" class="<?=($_SESSION['menu_active']=="logs") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-history"></i>
 								<a href="#"> Logs</a>
 							</li>
@@ -491,6 +542,11 @@
 					<div id="search-sort">
 						<input type="text" name="search" placeholder="Search Here" style="width: 100%;" id="admin-search-field">
 						<i class="fal fa-search"></i>
+						<select name="search" id="searchOptions" style="position: absolute;top: 0;width: 150px;right: 0;">
+							<option value="">Driver</option>
+							<option value="">Route</option>
+							<option value="">Bus</option>
+						</select>
 					</div>	
 					<div class="dash-result">
 						<div>

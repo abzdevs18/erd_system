@@ -964,6 +964,9 @@ textarea:focus, select:focus, .tg-select select:focus, .form-control:focus, inpu
 .changepass-holder strong {
     float: left;
 }
+.sched .changepass-holder {
+	margin: 5px 30px !important;
+}
 .prof-container {
 	padding-bottom: 10px;
 	width: 100%;
@@ -1000,6 +1003,7 @@ Table Design
 */
 .main-tbl-container {
 	width: 100%;
+	margin-left: 15px;
 }
 .tbl-wrap {
 	width: 90%;
@@ -1059,6 +1063,7 @@ Table Design
 }
 #search-sort {
 	position: relative;
+	z-index: 99;
 }
 
 #search-sort input, #sort-drop select {
@@ -1096,6 +1101,7 @@ thead tr th {
 tbody tr {
 	font: var(--font-quick-500-14);
 	transition: all .5s ease-in-out;
+	position: relative;
 }
 tbody tr:hover {
 	box-shadow: var(--box-shadow);
@@ -1419,11 +1425,12 @@ transition: all .5s;
 }
 .dash-result {
 	/* width: 80%; */
-	background: red;
+	background: var(--dash-side-hove);
 	position: absolute;
-	top: -0;
-	z-index: -1;
-	border-radius: 20px;
+	top: 39px;
+	z-index: 9;
+	border-radius: 0px 0px 35px 35px;
+	box-shadow: var(--box-shadow);
 	display: none;
 }
 /* Request Modal */
@@ -1633,4 +1640,70 @@ transition: all .5s;
 /* Privacy Settings Stylesheet */
 .privacy_settings {
 	width: 41.66666667% !important;
+}
+/* Places */
+/* .place-cont {
+	display: none;
+} */
+.places-preview {
+	margin: 10px;
+}
+.places-preview h2 {
+	font: var(--font-quick-400-13);
+	font-weight: 600;
+	font-size: 15px;
+}
+.places-preview span {
+	font: var(--font-quick-400-13);
+}
+/* Wrapp reviews */
+#reviewsPlaces {
+	margin: 10px;
+}
+#reviewsPlaces, #rWrapper {
+	display: flex;
+	flex-direction: column;
+	/* width: 100%; */
+}
+#rWrapper {
+	/* margin: 5px; */
+	margin-top: 10px;
+}
+#reviewsPlaces h2 {
+	font: var(--font-quick-400-13);
+	font-weight: 700;
+	font-size: 15px;
+}
+#rWrapper .rItem {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin: 5px;
+	justify-content: space-between;
+}
+#rWrapper .rItem .userProf{
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background-color: chocolate;
+	margin-right: 5px;
+}
+.userReviewData {
+	display: flex;
+	flex-direction: column;
+	width: calc( 100% - 30px );
+}
+
+.userReviewData h3 {
+	color: var(--dark-font);
+	font: var(--font-quick-400-13);
+	font-size: 17px;
+	font-weight: 600;
+}
+.userReviewData span i {
+	color: chocolate;
+	margin: 5px auto;
+}
+.userReviewData p {
+	font: var(--font-quick-400-13);
 }

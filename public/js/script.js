@@ -285,4 +285,3 @@ $(document).on("change", "#toR", function(e) {
   // new L.marker([latlngTo[0], latlngTo[1]]).addTo(modalMap);
   console.log(n);
 });
-// Routes list

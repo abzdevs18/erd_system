@@ -76,6 +76,28 @@ class Post
 			$this->db->rollBack();
 			return false;
 		}		
+	}  
+
+	public function getPlaces()
+	{
+		$this->db->query("SELECT places_attraction.*, place_image.img_path AS place_img FROM places_attraction LEFT JOIN place_image ON place_image.place_id = places_attraction.id");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function getPlacesId($id)
+	{
+		$this->db->query("SELECT places_attraction.*, place_image.img_path AS place_img FROM places_attraction LEFT JOIN place_image ON place_image.place_id = places_attraction.id WHERE places_attraction.id = $id");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
 	}
 
 	public function getRoutes()
@@ -87,6 +109,60 @@ class Post
 		}else{
 			return false;
 		}
+	}
+
+	public function listSchedule()
+	{
+		$this->db->query("SELECT schedules.id AS id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function searchlistSchedule($term)
+	{
+		$this->db->query("SELECT schedules.id AS id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id WHERE bus.body_num LIKE '%$term%' OR user.username LIKE '%$term%' OR routes.name LIKE '%$term%'");
+		$this->db->bind(":term", $term);
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+	
+
+	public function getBusForSched()
+	{
+		$this->db->query("SELECT * FROM `bus` WHERE `status` = 1");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function addSchedule($data)
+	{
+		try {
+			$this->db->beginTransaction();
+			$this->db->query("INSERT INTO `schedules`(`bus_id`, `route_id`, `depart_time`, `status`) VALUES (:bus_id, :route_id, :depart_time, 0)");
+			$this->db->bind(':bus_id', $data['busNum']);
+			$this->db->bind(':route_id', $data['busRoute']);
+			$this->db->bind(':depart_time', $data['departTime']);
+			$this->db->execute();
+
+			$this->db->commit();
+			return true;
+
+		} catch (Exception $e) {
+			$this->db->rollBack();
+			return false;
+		}		
 	}
 
 	public function addBus($data)
@@ -136,6 +212,29 @@ class Post
 			$this->db->rollBack();
 			return false;
 		}		
+	}
+
+	public function getDriverRoute($id)
+	{
+		$this->db->query("SELECT routes.name AS routeName, routes.from_terminal AS routeF, routes.to_terminal AS routeT FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN routes ON schedules.route_id = routes.id WHERE bus.id = :busId");
+		$this->db->bind(":busId", $id);
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
+	public function getDriverList()
+	{
+		$this->db->query("SELECT bus.id AS id, user.username AS name, user_contact.contact AS phone, bus.body_num AS busNum FROM user LEFT JOIN bus ON bus.user_id = user.id LEFT JOIN user_contact ON user_contact.user_id = user.id WHERE user.user_type = 3");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
 	}
 
 	public function addTerminal($data)
