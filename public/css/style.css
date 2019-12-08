@@ -1094,7 +1094,7 @@ thead tr th {
 	line-height: 20px;
 	text-align: left;
 	padding: 15px 10px;
-	background: #f7f7f7;
+	background: var(--dash-side-hove);
 	vertical-align: middle;
 	/* font-weight: 600 !important; */
 }
@@ -1108,7 +1108,7 @@ tbody tr:hover {
 }
 tbody tr td {
 	text-align: left;
-	padding: 20px 6px;
+	padding: 15px 6px;
 	vertical-align: top;
 }
 .req_logs_ td{
@@ -1560,7 +1560,7 @@ transition: all .5s;
 	background-color: #eb5a46;
 	font: var(--font-quick-500-14);
 	padding: 1px 10px;
-	border-radius: 5px;
+	border-radius: 35px;
 	color: #fff;
 }
 .m_notif_icon {

@@ -239,9 +239,13 @@ class Post
 
 	public function addTerminal($data)
 	{
-		$this->db->query("INSERT INTO `terminal_loc`(`name`, `latlong`) VALUES (:term_loc, :latlong)");
+		$coor = explode(", ", $data['latlong']);
+		$coorFormat = $coor[1] . ", " . $coor[0];
+
+		$this->db->query("INSERT INTO `terminal_loc`(`name`, `latlong`, `coordinate_mobile`) VALUES (:term_loc, :latlong, :coordinateMobile)");
 		$this->db->bind(':term_loc', $data['term_loc']);
 		$this->db->bind(':latlong', $data['latlong']);
+		$this->db->bind(':coordinateMobile', $coorFormat);
 		if($this->db->execute()){
 			return true;
 		}else{
