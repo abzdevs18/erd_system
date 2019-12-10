@@ -11,7 +11,7 @@
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'erdhubtravel.ga');
+			define('URL_ROOT', '');
 
 			//SITE NAME
 			define('SITE_NAME', 'Easy-Ride Terminal Hub');
