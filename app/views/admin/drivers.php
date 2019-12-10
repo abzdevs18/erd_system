@@ -40,7 +40,7 @@
 					<tbody id="data-container">
 						<?php if($data['driver']) : ?>
 							<?php foreach($data['driver'] AS $driver) : ?>
-							<tr class="driverRouteCheck" data-id="<?=$driver->id;?>">
+							<tr class="driverRouteCheck" style="background-color:<?=($driver->busNum) ? '' : '#ff000029;';?>" data-id="<?=$driver->id;?>">
 								<td>
 									<span><?=$driver->name;?></span>
 								</td>
@@ -51,8 +51,8 @@
 									<span><?=$driver->busNum;?></span>
 								</td>
 								<td>
-                                    <button>Delete</button>
-                                    <button>Update</button>
+                                    <!-- <button>Delete</button>
+                                    <button>Update</button> -->
                                     <button class="removeR" disabled>View Route</button>
 								</td>
 							</tr>

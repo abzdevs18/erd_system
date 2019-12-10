@@ -95,6 +95,49 @@ class Api extends Controller
         }
 	}
 
+	public function driverMessageSender(){
+
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+			//timezone is set to manila
+			date_default_timezone_set('Asia/Manila');
+  			// echo date("h:i a");
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			// $time = date("D, M d, g:i A");
+			$date = date("M. d, Y");
+			$time = date("h:i a");
+
+			$data = [
+				"status" => 0,
+				"sender" => trim($_POST['sender']),
+				"message" => trim($_POST['message']),
+				"receiver" => "",
+				"sendDate" => $date,
+				"sendTime" => $time
+			];
+
+			$row = $this->apiModel->getDriverRouteForMsg($data);
+			if($row){
+				$resultData = [
+					"from" => $row[0]->termOne,
+					"to" => $row[0]->termTwo
+				];
+				$row = $this->apiModel->getTerminalDispatcher($resultData);
+				if($row){
+					for($i = 0; $i < count($row); $i++){
+						$receiver = $row[$i]->userId;
+						if($receiver){
+							$data['receiver'] = $receiver;
+							$this->apiModel->sendMessage($data);
+						}
+					}
+				}
+
+			}else{
+				echo 'sas';
+			}
+		}
+	}
+
 	public function sendMessage(){
 
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
@@ -108,10 +151,10 @@ class Api extends Controller
 
 			$data = [
 				"status" => 0,
-				"sender" => 3,
-				// "sender" => trim($_POST['sender']),
-				"receiver" => 1,
-				// "receiver" => trim($_POST['receiver']),
+				// "sender" => 3,
+				"sender" => trim($_POST['sender']),
+				// "receiver" => 1,
+				"receiver" => trim($_POST['receiver']),
 				"message" => trim($_POST['message']),
 				"sendDate" => $date,
 				"sendTime" => $time
@@ -126,6 +169,40 @@ class Api extends Controller
 		}
 	}
 
+	public function getMessagesDriver(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => 0,
+				"receiver" => trim($_POST['receiver'])
+			];
+        
+            $row = $this->apiModel->getMessagesDriver($data);
+
+            if($row){
+                echo json_encode($row);
+            }
+        }
+	}
+
+	public function getBusByUserId(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => 0,
+				"userId" => trim($_POST['p_k'])
+			];
+        
+            $row = $this->apiModel->getBusByUserId($data);
+
+            if($row){
+                echo json_encode($row);
+            }
+        }
+	}
+
 	public function getMessages(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -137,6 +214,23 @@ class Api extends Controller
 			];
         
             $row = $this->apiModel->getMessages($data);
+
+            if($row){
+                echo json_encode($row);
+            }
+        }
+	}
+
+	public function getListDriverAssignToTwoTerminal(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"userId" => trim($_POST['userId']),
+				"locTerminal" => trim($_POST['terminal'])
+			];
+        
+            $row = $this->apiModel->getListDriver($data);
 
             if($row){
                 echo json_encode($row);

@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
 	Options -MultiViews
 	RewriteEngine On
-	RewriteBase /easy_ride_hub/public
+	RewriteBase /public
 	
 	#any request if not found
 	RewriteCond %{REQUEST_FILENAME} !-d

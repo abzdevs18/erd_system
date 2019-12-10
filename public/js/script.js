@@ -24,7 +24,7 @@ $(document).on("click", "#cancelJobHide", function() {
     overflow: "auto"
   });
 });
-
+var dataTerminalId;
 $(document).on("click", "#terminalCor", function() {
   var itemType = $(this).attr("data-u");
 
@@ -122,9 +122,7 @@ $(document).on("click", "#terminalCor", function() {
       }
     });
   } else if (itemType == 5) {
-    var assignTerminal = $("#assignTerminal")
-      .find(":selected")
-      .attr("data-id");
+    var assignTerminal = dataTerminalId;
     var dispatcherName = $("#disPatch").val();
     var dispatcherContact = $("#disContact").val();
     var uType = $(this).attr("data-uType");
@@ -145,6 +143,7 @@ $(document).on("click", "#terminalCor", function() {
         console.log(err);
       }
     });
+    console.log(assignTerminal);
   } else if (itemType == 6) {
     var driveId = $("#driveId").val();
     var driverN = $("#driverN").val();
@@ -228,6 +227,10 @@ $(document).on("change", "#addT", function() {
   }
 });
 
+$(document).on('change','#assignTerminal',function(){
+  // alert($("#assignTerminal").find(":selected").attr("data-id"));
+  dataTerminalId = $(this).find(":selected").attr("data-id");
+});
 // Modal Map
 var modalMap = L.map("mapid").setView([9.30357, 123.305317], 17);
 L.tileLayer(

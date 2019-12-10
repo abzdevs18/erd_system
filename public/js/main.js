@@ -10,7 +10,7 @@ $(".content").mCustomScrollbar({
   autoHideScrollbar: true
 });
 /*ENd ScrollBar*/
-var URL_ROOT_PATH = "/easy_ride_hub";
+var URL_ROOT_PATH = "";
 
 $(document).on("click", "#addSched", function(e) {
   window.location.href = URL_ROOT_PATH + "/admin/addschedlink";
@@ -440,9 +440,15 @@ $(document).on("click", ".placeCheck", function(e) {
     }
   });
 });
+$(document).on('click', '.driverRouteCheckBus',function(e){
+  $('#coordinatte').attr("data-checkId",$(this).attr("data-bus_id"));
+
+});
 
 $(document).on("click", ".driverRouteCheck", function(e) {
   $(".removeR").prop("disabled", false);
+  $('#coordinatte').attr("data-checkId",$(this).attr("data-bus_id"));
+
   var id = $(this).attr("data-id");
 
   $.ajax({
@@ -473,5 +479,5 @@ $(document).on("click", ".driverRouteCheck", function(e) {
       console.log("l");
     }
   });
-  console.log(busNum + ": " + departTime + ": " + busRoute);
+  // console.log(busNum + ": " + departTime + ": " + busRoute);
 });

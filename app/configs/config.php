@@ -11,10 +11,10 @@
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'https://192.168.0.28/easy_ride_hub');
+			define('URL_ROOT', 'http://40.88.51.83');
 
 			//SITE NAME
-			define('SITE_NAME', 'Help Agency');
+			define('SITE_NAME', 'Easy-Ride Terminal Hub');
 
 			//SALT
 			define('SECURE_SALT', 'k<UL?Gxr%6bTv[IX5h>s)vaEurK]4Sn');

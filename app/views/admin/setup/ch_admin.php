@@ -1,6 +1,6 @@
 <?php
 
-	$http_host = "http://" . $_SERVER['HTTP_HOST'] . "/easy_ride_hub";
+	$http_host = "http://" . $_SERVER['HTTP_HOST'] . "";
 
 ?>
 

@@ -113,7 +113,7 @@ class Post
 
 	public function listSchedule()
 	{
-		$this->db->query("SELECT schedules.id AS id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id");
+		$this->db->query("SELECT schedules.id AS id, schedules.bus_id AS bus_id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id");
 		$row = $this->db->resultSet();
 		if($row){
 			return $row;
@@ -124,7 +124,7 @@ class Post
 
 	public function searchlistSchedule($term)
 	{
-		$this->db->query("SELECT schedules.id AS id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id WHERE bus.body_num LIKE '%$term%' OR user.username LIKE '%$term%' OR routes.name LIKE '%$term%'");
+		$this->db->query("SELECT schedules.id AS id, schedules.bus_id AS bus_id, bus.body_num AS busNum, user.username AS driver, schedules.depart_time AS Time, routes.name AS routeName FROM schedules LEFT JOIN bus ON schedules.bus_id = bus.id LEFT JOIN user ON bus.user_id = user.id LEFT JOIN routes ON schedules.route_id = routes.id WHERE bus.body_num LIKE '%$term%' OR user.username LIKE '%$term%' OR routes.name LIKE '%$term%'");
 		$this->db->bind(":term", $term);
 		$row = $this->db->resultSet();
 		if($row){
@@ -137,7 +137,7 @@ class Post
 
 	public function getBusForSched()
 	{
-		$this->db->query("SELECT * FROM `bus` WHERE `status` = 1");
+		$this->db->query("SELECT * FROM `bus` WHERE `status` = 1 AND NOT EXISTS (SELECT * FROM schedules WHERE schedules.bus_id = bus.id)");
 		$row = $this->db->resultSet();
 		if($row){
 			return $row;

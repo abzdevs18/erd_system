@@ -1,6 +1,6 @@
 <?php if($data['listSchedule']) : ?>
     <?php foreach($data['listSchedule'] AS $schedule) : ?>
-    <tr class="driverRouteCheck" data-id="<?=$schedule->id;?>">
+    <tr class="driverRouteCheck" data-id="<?=$schedule->id;?>" data-bus_id="<?=$schedule->bus_id;?>">
         <td>
             <span><?=$schedule->busNum;?></span>
         </td>
@@ -14,8 +14,8 @@
             <span><?=$schedule->routeName;?></span>
         </td>
         <td>
-            <button>Delete</button>
-            <button>Update</button>
+            <button>View Route</button>
+            <!-- <button>Update</button> -->
         </td>
     </tr>
     <?php endforeach; ?>
