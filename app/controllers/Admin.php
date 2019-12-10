@@ -375,4 +375,30 @@ class Admin extends Controller
 		$this->view('admin/add_user_ad');
 	}
 
+	public function messenger(){
+		$listMsgUser = $this->adminModel->getUserMsg($_SESSION['uId']);
+		$iL = $this->adminModel->getLatestSender($_SESSION['uId']);
+		if($iL){
+			$head = $this->adminModel->latestMsgUser($iL[0]->rId);
+			$latest = $this->adminModel->getLatestMessages($_SESSION['uId'],$iL[0]->rId);
+			$data = [
+				"users" => $listMsgUser,
+				"latestM" => $latest,
+				"header" => $head,
+				"usr" => $iL[0]->rId
+			];
+		}else{
+			$data = [
+
+			];
+		}
+	
+		// no other solution this is for the Left sidebar navigation
+		// the active state is dependent to this SESSION we are setting.
+		unset($_SESSION['menu_active']);
+		$_SESSION['menu_active'] = "messages";
+
+		$this->view('admin/messages', $data);
+	}
+
 }
