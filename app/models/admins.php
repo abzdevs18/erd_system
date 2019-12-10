@@ -31,15 +31,15 @@ class Admins
 		return false;
 		// echo $this->db;
 	}
-	public function getUserMsg($id){
-		$this->db->query("SELECT DISTINCT user.id,user.firstname AS firstN, user.lastname AS lastN, user.user_availability AS uStatus,(SELECT messages.msg_content FROM messages WHERE messages.user_sender_id = user.id ORDER BY messages.timestamp DESC LIMIT 1) AS latestM,(SELECT messages.timestamp FROM messages WHERE messages.user_sender_id = user.id ORDER BY messages.timestamp DESC LIMIT 1) AS mStamp, user_profile.img_path AS imagePath FROM messages LEFT JOIN user ON user.id = messages.user_sender_id LEFT JOIN user_profile ON user_profile.user_id = user.id WHERE user.id != 1 AND messages.user_receiver_id = $id ORDER BY mStamp DESC");
-		$row = $this->db->resultSet();
-		if($row){
-			return $row;
-		}else{
-			return false;
-		}
-	}
+	// public function getUserMsg($id){
+	// 	$this->db->query("SELECT DISTINCT user.id,user.firstname AS firstN, user.lastname AS lastN, user.user_availability AS uStatus,(SELECT messages.msg_content FROM messages WHERE messages.user_sender_id = user.id ORDER BY messages.timestamp DESC LIMIT 1) AS latestM,(SELECT messages.timestamp FROM messages WHERE messages.user_sender_id = user.id ORDER BY messages.timestamp DESC LIMIT 1) AS mStamp, user_profile.img_path AS imagePath FROM messages LEFT JOIN user ON user.id = messages.user_sender_id LEFT JOIN user_profile ON user_profile.user_id = user.id WHERE user.id != 1 AND messages.user_receiver_id = $id ORDER BY mStamp DESC");
+	// 	$row = $this->db->resultSet();
+	// 	if($row){
+	// 		return $row;
+	// 	}else{
+	// 		return false;
+	// 	}
+	// }
 
 	public function getLatestSender($id)
 	{
