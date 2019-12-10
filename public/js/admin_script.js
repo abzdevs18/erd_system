@@ -30,7 +30,8 @@ $(document).on("click", ".ctl-msg", function() {
   });
 });
 
-$(document).on("click", "#menus-nav > li", function() {
+$(document).on("click", "#menus-nav > li", function(e) {
+  e.preventDefault();
   var link = $(this).attr("data-link");
   window.location.href = link;
   $("#menus-nav li").removeClass("menu-active");
