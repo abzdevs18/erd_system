@@ -494,7 +494,7 @@
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/messenger" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-envelope"></i>
-								<a href="#"> Messagess</a>
+								<a href="#"> Chat</a>
 							</li>
 							<li data-link="<?=URL_ROOT;?>/admin/driver" class="<?=($_SESSION['menu_active']=="driver") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-car"></i>
