@@ -80,15 +80,15 @@ class Admin extends Controller
 		$this->view('admin/request',$data);
 	}
 
-	public function biddings(){
+	// public function biddings(){
 		
-		// no other solution this is for the Left sidebar navigation
-		// the active state is dependent to this SESSION we are setting.
-		unset($_SESSION['menu_active']);
-		$_SESSION['menu_active'] = "messages";
+	// 	// no other solution this is for the Left sidebar navigation
+	// 	// the active state is dependent to this SESSION we are setting.
+	// 	unset($_SESSION['menu_active']);
+	// 	$_SESSION['menu_active'] = "messages";
 
-		$this->view('admin/messages');
-	}
+	// 	$this->view('admin/messages');
+	// }
 
 	public function driver(){
 		$driver = $this->postModel->getDriverList();
