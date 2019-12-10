@@ -1,4 +1,4 @@
-var URLL_ROOT = "/easy_ride_hub";
+var URLL_ROOT = "";
 // Delete Blog
 $(document).on("click", "#add_record", function() {
   // mapping();
