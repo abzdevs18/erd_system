@@ -47,7 +47,7 @@
 				// routingControl = L.marker([data['latitude'], data['longitude']]).addTo(rousteMap);
 
 			}
-			// console.log(data);
+			console.log(data);
 		});
 	</script>
 	<!-- <script src="https://cdn.tiny.cloud/1/hhu3aczt7p034dcjnizjwnns5faj5u4s14e894midesztea0/tinymce/5/tinymce.min.js"></script>  -->
