@@ -492,7 +492,7 @@
 								<i class="fal fa-calendar-week"></i>
 								<a href="#"> Schedules</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/biddings" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
+							<li data-link="<?=URL_ROOT;?>/admin/messenger" class="<?=($_SESSION['menu_active']=="messages") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-envelope"></i>
 								<a href="#"> Messages</a>
 							</li>
