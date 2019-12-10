@@ -11,7 +11,7 @@
 			define('APP_ROOT', dirname(dirname(__FILE__)));
 
 			//URL ROOT
-			define('URL_ROOT', 'http://40.88.51.83');
+			define('URL_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 			//SITE NAME
 			define('SITE_NAME', 'Easy-Ride Terminal Hub');
