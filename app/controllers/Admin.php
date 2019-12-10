@@ -1,6 +1,6 @@
 <?php
 
-define("ROOT", "/easy_ride_hub");
+define("ROOT", "");
 /**
  * Admin Account Controller
  */
