@@ -105,7 +105,7 @@
 			$('input.timepicker').timepicker();
 		} );
 	</script>
-	<script>
+	<!-- <script>
 		tinymce.init({
 			selector: 'textarea#chemicalFormula',
 			// without the below lines of code. TinyMCE editor gets the value of the textarea
@@ -117,7 +117,7 @@
 				});
 			}
 		});
-	</script>
+	</script> -->
 	<!-- Base on the documentation, if multiple editors we need to initialize each -->
 	<script>
 		$( function() {
