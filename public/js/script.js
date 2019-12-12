@@ -163,6 +163,7 @@ $(document).on("click", "#terminalCor", function() {
       }
     });
   }
+  window.location.href = window.location.origin;
 });
 
 // Mapping the terminal
