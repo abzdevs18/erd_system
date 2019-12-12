@@ -60,7 +60,7 @@
 					</div>
 					<div class="msgs-3-col-item" style="width:66.666%;">
 						<div style="display:flex;flex-direction:column;height:65vh;" id="rightMessages">												
-							<div class="request_icon_wrapper message_header_chat" style="display:none;">
+							<div class="request_icon_wrapper message_header_chat">
 								<?php foreach($data['header'] AS $im) : ?>
 									<?php if($im->imagePath): ?>
 										<div class="req_icon m_notif_icon message_icon" style="margin:8px;">
