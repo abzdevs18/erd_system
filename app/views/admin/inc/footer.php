@@ -19,7 +19,7 @@
 		'+639350976412',
 		array(
 			'from' => $twilio_number,
-			'body' => 'I sent this message in under 10 minutes!'
+			'body' => 'I sent this e in under 10 minutes!'
 		)
 	);?>
 
