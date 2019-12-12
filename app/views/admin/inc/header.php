@@ -97,7 +97,7 @@
 								<img src="<?=URL_ROOT;?>/img/prof.png">
 							</div>
 							<div id="admin-details">
-								<h3>Hi! I'm Angela</h3>
+								<h3>Good day! Admin</h3>
 								<p>Administrator</p>
 							</div>
 							<div id="admin-edit">

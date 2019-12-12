@@ -23,6 +23,7 @@ $(document).on("click", "#cancelJobHide", function() {
   $("body").css({
     overflow: "auto"
   });
+  window.location.href = window.location.origin+"/admin";
 });
 var dataTerminalId;
 $(document).on("click", "#terminalCor", function() {
@@ -41,6 +42,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -62,6 +64,7 @@ $(document).on("click", "#terminalCor", function() {
       },
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -95,6 +98,7 @@ $(document).on("click", "#terminalCor", function() {
       data: fd,
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -116,6 +120,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -138,6 +143,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -157,13 +163,13 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
+        window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
       }
     });
   }
-  window.location.href = window.location.origin+"/admin";
 });
 
 // Mapping the terminal
