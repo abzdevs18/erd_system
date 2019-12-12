@@ -163,7 +163,7 @@ $(document).on("click", "#terminalCor", function() {
       }
     });
   }
-  window.location.href = window.location.origin;
+  window.location.href = window.location.origin+"/admin";
 });
 
 // Mapping the terminal
