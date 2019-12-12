@@ -24,6 +24,11 @@ io.on('connection', function(socket){
 		console.log(data);
 	});
 });
+client.messages.create({
+  from: "+12564725511",
+  to: '+639350976412',
+  body: "You just sent an SMS from Node.js using Twilio!"
+}).then((messsage) => console.log(message.sid));
 
 
 

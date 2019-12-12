@@ -10,11 +10,6 @@
 		$(document).ready(function() {
 			$('#example').DataTable();
 		} );
-		client.messages.create({
-  from: "+12564725511",
-  to: '+639350976412',
-  body: "You just sent an SMS from Node.js using Twilio!"
-}).then((messsage) => console.log(message.sid));
 	</script>
 </body>
 </html>
