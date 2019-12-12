@@ -464,10 +464,10 @@
 					<div id="admin-profile">
 						<div id="profile-container" class="adm-prof">
 							<div id="admin-icon">
-								<img src="<?=URL_ROOT;?>/img/prof.png">
+								<img src="<?=URL_ROOT;?>/img/icons/header_icon.png">
 							</div>
 							<div id="admin-details">
-								<h3>Hi! I'm Angela</h3>
+								<h3>Hi! I'm Ansgela</h3>
 								<p>Administrator</p>
 							</div>
 							<div id="admin-edit">

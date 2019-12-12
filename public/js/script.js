@@ -120,6 +120,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
+        
         window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {

@@ -10,11 +10,11 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/col-1.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/jeep.png">				
 					</figure>
 					<div class="col-content">
-						<p>562</p>
-						<h3>Monthly Request</h3>
+						<p id="jeepney">562</p>
+						<h3>Jeepney</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>						
 					</div>
 				</div>
@@ -23,11 +23,11 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/clock.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/driver.png">				
 					</figure>
 					<div class="col-content">
-						<p>562</p>
-						<h3>Pending Request</h3>
+						<p id="numJeep">562</p>
+						<h3>Drivers</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
 				</div>
@@ -36,11 +36,11 @@
 				<sup><i class="fal fa-question-circle" style="font-size:12px;" title="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eligendi est eaque laborum eum sit? Ipsa earum dolor velit non praesentium architecto hic cupiditate fugiat sed. Maiores quod repellendus aliquam commodi."></i></sup>
 				<div class="col-wrap pad-30">
 					<figure>
-						<img src="<?=URL_ROOT;?>/img/icons/chemistry.png">				
+						<img src="<?=URL_ROOT;?>/img/icons/way.png">				
 					</figure>
 					<div class="col-content">
-						<p>562</p>
-						<h3>Chemical in Lab</h3>
+						<p id="routes">562</p>
+						<h3>Routes</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
 				</div>
