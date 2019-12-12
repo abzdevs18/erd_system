@@ -100,6 +100,7 @@
 		}
 	</style>
 	<script>
+		var socket = io.connect('http://erdhubtravel.ga.local:3000');
 		$( function() {
 			$( "#accordion" ).accordion();
 			$('input.timepicker').timepicker();
@@ -196,7 +197,7 @@
 					</div>
 					<div class="changepass-holder">
 						<div class="form-group">
-							<input type="text" id="driverN" value="" name="busNum" style="width: 100%;border-radius:35px;">
+							<input type="text" id="busNum" value="" name="busNum" style="width: 100%;border-radius:35px;">
 							<label for="driverNum">Bus number</label>
 						</div>
 					</div>
@@ -508,10 +509,10 @@
 								<i class="fal fa-map-marked-alt"></i>
 								<a href="#"> Places</a>
 							</li>
-							<li data-link="<?=URL_ROOT;?>/admin/logs" class="<?=($_SESSION['menu_active']=="logs") ? 'menu-active' : ''; ?>">
+							<!-- <li data-link="<?=URL_ROOT;?>/admin/logs" class="<?=($_SESSION['menu_active']=="logs") ? 'menu-active' : ''; ?>">
 								<i class="fal fa-history"></i>
 								<a href="#"> Logs</a>
-							</li>
+							</li> -->
 						</ul>
 						<div id="admin-details" class="menu-head">
 							<h3>Actions</h3>

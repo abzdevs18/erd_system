@@ -192,8 +192,10 @@ class Post
 	{
 		try {
 			$this->db->beginTransaction();
-			$this->db->query("INSERT INTO `user` (`username`,`user_type`) VALUES (:uName, :uType)");
+			$this->db->query("INSERT INTO `user` (`username`,`firstname`, `user_pass`,`user_type`) VALUES (:uName, :firstN, :pass, :uType)");
 			$this->db->bind(':uName', $data['driverN']);
+			$this->db->bind(':firstN', $data['driverN']);
+			$this->db->bind(':pass', $data['hash']);
 			$this->db->bind(':uType', $data['uType']);
 			$this->db->execute();
 
@@ -294,4 +296,18 @@ class Post
 			return false;
 		}
 	}
+
+	// Get the count of driver, bus and route
+
+	public function getCounts()
+	{
+		$this->db->query("SELECT COUNT(*) AS bus,(SELECT COUNT(*) FROM user WHERE user.user_type = 3) AS driver, (SELECT COUNT(*) FROM routes) AS routes FROM bus");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
+
 }

@@ -13,7 +13,7 @@
 						<img src="<?=URL_ROOT;?>/img/icons/jeep.png">				
 					</figure>
 					<div class="col-content">
-						<p id="jeepney">562</p>
+						<p id="jeepney"><?=$data['count'][0]->bus;?></p>
 						<h3>Jeepney</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>						
 					</div>
@@ -26,7 +26,7 @@
 						<img src="<?=URL_ROOT;?>/img/icons/driver.png">				
 					</figure>
 					<div class="col-content">
-						<p id="numJeep">562</p>
+						<p id="numJeep"><?=$data['count'][0]->driver;?></p>
 						<h3>Drivers</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>
@@ -39,7 +39,7 @@
 						<img src="<?=URL_ROOT;?>/img/icons/way.png">				
 					</figure>
 					<div class="col-content">
-						<p id="routes">562</p>
+						<p id="routes"><?=$data['count'][0]->routes;?></p>
 						<h3>Routes</h3>
 						<a href="#">view details <i class="fal fa-angle-right"></i></a>
 					</div>

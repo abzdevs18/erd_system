@@ -210,5 +210,14 @@ class Apis
 		}
 	}
 
-	
+	public function getRoutesSpinner()
+	{
+		$this->db->query("SELECT * FROM `routes`");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
 }

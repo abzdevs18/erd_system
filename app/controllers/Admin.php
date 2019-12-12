@@ -6,6 +6,7 @@ define("ROOT", "");
  */
 class Admin extends Controller
 {
+	private $salt = SECURE_SALT;
 	function __construct()
 	{
 		if (file_exists( dirname(__FILE__) . '/../configs/config.php')) {
@@ -30,10 +31,12 @@ class Admin extends Controller
 	public function index(){
 		$row = $this->postModel->getTerminals();
 		$drivers = $this->postModel->getDrivers();
+		$count = $this->postModel->getCounts();
 		$bus = $this->postModel->getBus();
 		$data = [
 			"terminal"=>$row,
 			"drivers"=>$drivers,
+			"count"=>$count,
 			"bus"=>$bus
 		];
 		// no other solution this is for the Left sidebar navigation
@@ -223,11 +226,17 @@ class Admin extends Controller
 	public function addDriver(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
 			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			$randomPass = rand(100000,999999);
+			$salted_pass = $this->salt . $randomPass;
+			$hashed = password_hash($salted_pass, PASSWORD_DEFAULT);
+
 			$data = [
 				"status" => "",
 				"driverCon" => trim($_POST['driverCon']),
 				"uType" => trim($_POST['uType']),
-				"driverN" => trim($_POST['driverN'])
+				"driverN" => trim($_POST['driverN']),
+				"password" => $randomPass,
+				"hash" => $hashed
 			];
 			if($this->postModel->addDriver($data)){
 				$data['status'] = 1;

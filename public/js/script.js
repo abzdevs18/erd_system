@@ -119,9 +119,14 @@ $(document).on("click", "#terminalCor", function() {
       },
       dataType: "json",
       success: function(data) {
-        console.log(data);
-        
-        window.location.href = window.location.origin+"/admin";
+
+        socket.emit('driver', data);
+
+        setTimeout(function(){
+          window.location.href = window.location.origin+"/admin";
+        },2000);
+
+        // window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {
         console.log(err);
@@ -153,7 +158,7 @@ $(document).on("click", "#terminalCor", function() {
     console.log(assignTerminal);
   } else if (itemType == 6) {
     var driveId = $("#driveId").val();
-    var driverN = $("#driverN").val();
+    var driverN = $("#busNum").val();
     $.ajax({
       url: URLL_ROOT + "/admin/addBus",
       type: "POST",
@@ -163,7 +168,6 @@ $(document).on("click", "#terminalCor", function() {
       },
       dataType: "json",
       success: function(data) {
-        console.log(data);
         window.location.href = window.location.origin+"/admin";
       },
       error: function(err) {

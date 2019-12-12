@@ -59,6 +59,17 @@ class Api extends Controller
         }
 	}
 
+	public function spinnerRoute(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		        
+            $row = $this->apiModel->getRoutesSpinner();
+
+            if($row){
+                echo json_encode($row);
+            }
+        }
+	}
+
+
 	public function appCoor(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			//timezone is set to manila
