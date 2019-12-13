@@ -9,6 +9,7 @@ class Api extends Controller
 	function __construct()
 	{
         $this->apiModel = $this->model('Apis');
+		$this->postModel = $this->model('Post');
     }
 
 	public function terminalLocations(){
