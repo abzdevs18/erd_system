@@ -259,4 +259,24 @@ class Api extends Controller
         }
 	}
 
+	// Add Schedule from ANdroid
+
+	public function addSchedule(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				"status" => "",
+				"busNum" => trim($_POST['busNum']),
+				"departTime" => trim($_POST['departTime']),
+				"busRoute" => trim($_POST['busRoute'])
+			];
+
+			if($this->postModel->addSchedule($data)){
+				$data['status'] = 1;
+				echo json_encode($data);
+			}
+		}
+	}
+
 }
