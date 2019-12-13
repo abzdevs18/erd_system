@@ -220,4 +220,15 @@ class Apis
 			return false;
 		}
 	}
+
+	public function getBus()
+	{
+		$this->db->query("SELECT bus.id AS busId, bus.body_num AS bodyNum, user.username AS driver FROM bus LEFT JOIN user ON user.id = bus.user_id WHERE bus.status = 1");
+		$row = $this->db->resultSet();
+		if($row){
+			return $row;
+		}else{
+			return false;
+		}
+	}
 }

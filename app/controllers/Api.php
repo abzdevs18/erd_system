@@ -59,6 +59,16 @@ class Api extends Controller
         }
 	}
 
+	public function getBus(){
+		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		        
+            $row = $this->apiModel->getBus();
+
+            if($row){
+                echo json_encode($row);
+            }
+        }
+	}
+
 	public function spinnerRoute(){
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {		        
             $row = $this->apiModel->getRoutesSpinner();

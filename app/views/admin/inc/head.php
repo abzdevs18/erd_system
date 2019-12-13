@@ -207,20 +207,6 @@
 				<div id="driverForm" style="display:none;">
 					<div class="changepass-holder">
 						<div class="form-group">
-							<select style="width: 100%;border-radius:35px;" name="from" id="assignTerminal">
-								<optgroup>
-									<?php if($data['bus']) : ?>
-										<?php foreach($data['bus'] AS $bus) : ?>
-											<option value="<?=$bus->id?>"><?=$bus->body_num?></option>
-										<?php endforeach;?>
-									<?php endif;?>
-								</optgroup>
-							</select>
-							<label for="from">Bus assigned:</label>
-						</div>
-					</div>
-					<div class="changepass-holder">
-						<div class="form-group">
 							<input type="text" id="driverN" value="" name="driverName" style="width: 100%;border-radius:35px;">
 							<label for="driverName">Driver's Name</label>
 						</div>
