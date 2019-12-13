@@ -231,4 +231,23 @@ class Apis
 			return false;
 		}
 	}
+
+	public function addSchedule($data)
+	{
+		try {
+			$this->db->beginTransaction();
+			$this->db->query("INSERT INTO `schedules`(`bus_id`, `route_id`, `depart_time`, `status`) VALUES (:bus_id, :route_id, :depart_time, 0)");
+			$this->db->bind(':bus_id', $data['busNum']);
+			$this->db->bind(':route_id', $data['busRoute']);
+			$this->db->bind(':depart_time', $data['departTime']);
+			$this->db->execute();
+
+			$this->db->commit();
+			return true;
+
+		} catch (Exception $e) {
+			$this->db->rollBack();
+			return false;
+		}		
+	}
 }

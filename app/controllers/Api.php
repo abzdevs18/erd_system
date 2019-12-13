@@ -273,7 +273,7 @@ class Api extends Controller
 				"busRoute" => trim($_POST['busRoute'])
 			];
 
-			if($this->postModel->addSchedule($data)){
+			if($this->apiModel->addSchedule($data)){
 				$data['status'] = 1;
 				echo json_encode($data);
 			}
