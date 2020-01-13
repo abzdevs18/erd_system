@@ -1,5 +1,5 @@
-var express = require("express");
-var socket = require("socket.io");
+import express, { static } from "express";
+import socket from "socket.io";
 var app = express();
 
 // Twilio Start inn Here
@@ -10,12 +10,12 @@ var app = express();
 // var client = new twilio(accountSid, authToken);
 // End of Twilio
 
-var server = app.listen(80, function() {
+var server = app.listen(3001, function() {
   console.log("listen");
 });
 
 // Page
-app.use(express.static("public"));
+app.use(static("public"));
 
 // Socl
 var io = socket(server);
