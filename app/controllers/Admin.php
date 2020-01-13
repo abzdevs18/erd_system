@@ -338,11 +338,13 @@ class Admin extends Controller
 	public function schedule(){
 		$routes = $this->postModel->getRoutes();
 		$schedule = $this->postModel->getBusForSched();
+		$row = $this->postModel->getTerminals();
 
 		$listSchedule = $this->postModel->listSchedule();
 		$data = [
 			"routes" => $routes,
 			"schedule" => $schedule,
+			"terminal"=>$row,
 			"listSchedule" => $listSchedule
 		];
 		

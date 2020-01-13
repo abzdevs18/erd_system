@@ -100,7 +100,7 @@
 		}
 	</style>
 	<script>
-		var socket = io.connect('http://erdhubtravel.ga:3001');
+		var socket = io.connect('http://erdhubtravel.ga:80');
 		$( function() {
 			$( "#accordion" ).accordion();
 			$('input.timepicker').timepicker();

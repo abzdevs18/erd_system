@@ -10,7 +10,7 @@ var app = express();
 // var client = new twilio(accountSid, authToken);
 // End of Twilio
 
-var server = app.listen(3001, function() {
+var server = app.listen(80, function() {
   console.log("listen");
 });
 
