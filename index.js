@@ -11,6 +11,15 @@ app.use(express.static(__dirname + "public"));
 server.listen(3001, function() {
   console.log("j");
 });
+// set connect timer to 5 seconds
+server._connectTimer = setTimeout(function() {
+  socket.close();
+}, 5000);
+
+server.on("connect", function() {
+  // socket connected successfully, clear the timer
+  clearTimeout(socket._connectTimer);
+});
 // io.on("connection", function(client) {
 //   console.log("Client connected...");
 
@@ -19,7 +28,7 @@ server.listen(3001, function() {
 //   });
 // });
 
-io.on("connection", function(socket) {
+server.on("connection", function(socket) {
   console.log("connected");
 
   socket.on("message", function(data) {
