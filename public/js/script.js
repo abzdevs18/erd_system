@@ -23,7 +23,7 @@ $(document).on("click", "#cancelJobHide", function() {
   $("body").css({
     overflow: "auto"
   });
-  window.location.href = window.location.origin+"/admin";
+  window.location.href = window.location.origin + "/admin";
 });
 var dataTerminalId;
 $(document).on("click", "#terminalCor", function() {
@@ -42,7 +42,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
-        window.location.href = window.location.origin+"/admin";
+        window.location.href = window.location.origin + "/admin";
       },
       error: function(err) {
         console.log(err);
@@ -64,7 +64,7 @@ $(document).on("click", "#terminalCor", function() {
       },
       success: function(data) {
         console.log(data);
-        window.location.href = window.location.origin+"/admin";
+        window.location.href = window.location.origin + "/admin";
       },
       error: function(err) {
         console.log(err);
@@ -98,7 +98,7 @@ $(document).on("click", "#terminalCor", function() {
       data: fd,
       success: function(data) {
         console.log(data);
-        window.location.href = window.location.origin+"/admin";
+        window.location.href = window.location.origin + "/admin";
       },
       error: function(err) {
         console.log(err);
@@ -119,12 +119,11 @@ $(document).on("click", "#terminalCor", function() {
       },
       dataType: "json",
       success: function(data) {
+        socket.emit("driver", data);
 
-        socket.emit('driver', data);
-
-        setTimeout(function(){
-          window.location.href = window.location.origin+"/admin";
-        },2000);
+        setTimeout(function() {
+          window.location.href = window.location.origin + "/admin";
+        }, 2000);
 
         // window.location.href = window.location.origin+"/admin";
       },
@@ -149,7 +148,7 @@ $(document).on("click", "#terminalCor", function() {
       dataType: "json",
       success: function(data) {
         console.log(data);
-        window.location.href = window.location.origin+"/admin";
+        window.location.href = window.location.origin + "/admin";
       },
       error: function(err) {
         console.log(err);
@@ -168,7 +167,7 @@ $(document).on("click", "#terminalCor", function() {
       },
       dataType: "json",
       success: function(data) {
-        window.location.href = window.location.origin+"/admin";
+        window.location.href = window.location.origin + "/admin";
       },
       error: function(err) {
         console.log(err);
@@ -239,9 +238,11 @@ $(document).on("change", "#addT", function() {
   }
 });
 
-$(document).on('change','#assignTerminal',function(){
+$(document).on("change", "#assignTerminal", function() {
   // alert($("#assignTerminal").find(":selected").attr("data-id"));
-  dataTerminalId = $(this).find(":selected").attr("data-id");
+  dataTerminalId = $(this)
+    .find(":selected")
+    .attr("data-id");
 });
 // Modal Map
 var modalMap = L.map("mapid").setView([9.30357, 123.305317], 17);

@@ -440,14 +440,13 @@ $(document).on("click", ".placeCheck", function(e) {
     }
   });
 });
-$(document).on('click', '.driverRouteCheckBus',function(e){
-  $('#coordinatte').attr("data-checkId",$(this).attr("data-bus_id"));
-
+$(document).on("click", ".driverRouteCheckBus", function(e) {
+  $("#coordinatte").attr("data-checkId", $(this).attr("data-bus_id"));
 });
 
 $(document).on("click", ".driverRouteCheck", function(e) {
   $(".removeR").prop("disabled", false);
-  $('#coordinatte').attr("data-checkId",$(this).attr("data-bus_id"));
+  $("#coordinatte").attr("data-checkId", $(this).attr("data-bus_id"));
 
   var id = $(this).attr("data-id");
 
