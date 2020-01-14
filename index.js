@@ -1,14 +1,16 @@
-var express = require("express");
-var app = express();
-var server = require("http").createServer(app);
+var express = require("express")();
+// var app = express();
+var server = require("http").createServer(express);
 var io = require("socket.io")(server);
 
-app.use(express.static(__dirname + "public"));
+// app.use(express.static(__dirname + "public"));
 
 // app.get("/", function(req, res, next) {
 //   res.sendFile(__dirname + "/index.html");
 // });
-
+express.get("/", (req, res) => {
+  res.send("Chat Server is running on port 3000");
+});
 server.listen(3001, function() {
   console.log("j");
 });
