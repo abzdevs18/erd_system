@@ -11,7 +11,7 @@
 				<h2>Places</h2>
 			</div>
 			<div class="sortby filter-category">
-				<div id="sort-drop" style="width:100%;">
+				<div id="sort-drop" style="width:100%;display:none;">
 					<span>Sort by:</span>
 					<select style="width:100%;">
 						<optgroup>
@@ -48,8 +48,8 @@
 									<span><?=$place->coordinates;?></span>
 								</td>
 								<td>
-                                    <button>Delete</button>
-                                    <button>Update</button>
+                                    <button>View</button>
+                                    <!-- <button>Update</button> -->
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -75,7 +75,7 @@
                     <!-- <div id="routeChecking" style="width:100%;height:400px;"></div> -->
 				<!-- <div id="routeChecking" style="height:430px;"></div> -->
                 </div>
-                <div id="reviewsPlaces">
+                <div id="reviewsPlaces" style="display:none;">
                     <h2>All reviews</h2>
                     <div id="rWrapper">
                         <div class="rItem">
